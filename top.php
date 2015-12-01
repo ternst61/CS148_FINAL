@@ -5,11 +5,10 @@ require_once('lib/custom-functions.php');
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>UVM Course Database</title>
+        <title>Earnst Family Tree</title>
         <meta charset="utf-8">
-        <meta name="author" content="Thomas H Ernst">
-        <meta name="description" content="A sample database for cs148, populated
-              with classes offered at UVM and the students in those classes.">
+        <meta name="author" content="Sam Swanke">
+        <meta name="description" content="This website will display tables from an sql database that has only fictional people!">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,7 +17,9 @@ require_once('lib/custom-functions.php');
         <![endif]-->
 
         <link rel="stylesheet" href="css/base.css" type="text/css" media="screen">
-
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+        
         <?php
         $debug = false;
 
@@ -130,5 +131,5 @@ require_once('lib/custom-functions.php');
     <?php
     print '<body id="' . $path_parts['filename'] . '">';
     include "header.php";
-    //include "nav.php";
+    include "nav.php";
     ?>
