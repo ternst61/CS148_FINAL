@@ -1,135 +1,70 @@
-<?php
-include "lib/constants.php";
-require_once('lib/custom-functions.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Earnst Family Tree</title>
-        <meta charset="utf-8">
-        <meta name="author" content="Sam Swanke">
-        <meta name="description" content="This website will display tables from an sql database that has only fictional people!">
+<head>
+<title>Ernst Family Tree</title>
+<meta charset="utf-8">
+<meta name="author" content="Sam Swanke, Tommy Ernst">
+<meta name="description" content="The family lineage of Tommy Ernst. Created for our CS148 Final Project.">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!--[if lt IE 9]>
-        <script src="//html5shim.googlecode.com/sin/trunk/html5.js"></script>
-        <![endif]-->
+<!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/sin/trunk/html5.js"></script>
+<![endif]-->
 
-        <link rel="stylesheet" href="css/base.css" type="text/css" media="screen">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
-        
-        <?php
-        $debug = false;
+<link rel="stylesheet" href="style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="extra.css" type="text/css" media="screen">
 
-        // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
-        //
-        // inlcude all libraries. Note some are in lib and some are in bin
-        // bin should be located at the same level as www-root (it is not in 
-        // github)
-        // 
-        // yourusername
-        //     bin
-        //     www-logs
-        //     www-root
-        
-        
-        $includeDBPath = "../bin/";
-        $includeLibPath = "../lib/";
-        
-        
-        require_once($includeLibPath . 'mailMessage.php');
+<?php
+// %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
+//
+// PATH SETUP
+//
+//  $domain = "https://www.uvm.edu" or http://www.uvm.edu;
+ $domain = "http://";
+if (isset($_SERVER['HTTPS'])) {
+    if ($_SERVER['HTTPS']) {
+        $domain = "https://";
+    }
+}
 
-        require_once('lib/security.php');
-        
-        require_once($includeDBPath . 'Database.php');
-        
-        // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
-        //
-        // PATH SETUP
-        //  
-            
-        // sanitize the server global variable
-        $_SERVER = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
-        foreach ($_SERVER as $key => $value) {
-            $_SERVER[$key] = sanitize($value, false);
-        }
-        
-        $domain = "//"; // let the server set http or https as needed
+$server = htmlentities($_SERVER['SERVER_NAME'], ENT_QUOTES, "UTF-8");
 
-        $server = htmlentities($_SERVER['SERVER_NAME'], ENT_QUOTES, "UTF-8");
+$domain .= $server;
 
-        $domain .= $server;
+$phpSelf = htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8");
 
-        $phpSelf = htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8");
+$path_parts = pathinfo($phpSelf);
 
-        $path_parts = pathinfo($phpSelf);
+if ($debug){
+    print "<p>Domain" . $domain;
+    print "<p>php Self". $phpSelf;
+    print "<p>Path Parts<pre>";
+    print_r($path_parts);
+    print "</pre>";
+}
 
-        if ($debug) {
-            print "<p>Domain" . $domain;
-            print "<p>php Self" . $phpSelf;
-            print "<p>Path Parts<pre>";
-            print_r($path_parts);
-            print "</pre>";
-        }
-        
-        $yourURL = $domain . $phpSelf;
+// %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
+//
+// inlcude all libraries
+//
 
-        // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
-        // sanatize global variables 
-        // function sanitize($string, $spacesAllowed)
-        // no spaces are allowed on most pages but your form will most likley
-        // need to accept spaces. Notice my use of an array to specfiy whcih 
-        // pages are allowed.
-        // generally our forms dont contain an array of elements. Sometimes
-        // I have an array of check boxes so i would have to sanatize that, here
-        // i skip it.
+require_once('lib/security.php');
 
-        $spaceAllowedPages = array("form.php");
+if ($path_parts['filename'] == "form") {
+    include "lib/validation-functions.php";
+    include "lib/mail-message.php";
+}
+?>	
 
-        if (!empty($_GET)) {
-            $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-            foreach ($_GET as $key => $value) {
-                $_GET[$key] = sanitize($value, false);
-            }
-        }
-        
-        // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
-        //
-        // Process security check.
-        //
-        
-        if (!securityCheck($path_parts, $yourURL)) {
-            print "<p>Login failed: " . date("F j, Y") . " at " . date("h:i:s") . "</p>\n";
-            die("<p>Sorry you cannot access this page. Security breach detected and reported</p>");
-        }
+</head>
+<!-- ################ body section ######################### -->
 
-        // %^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
-        //
-        // Set up database connection
-        //
-        
-        $dbUserName = get_current_user() . '_reader';
-        $whichPass = "r"; //flag for which one to use.
-        $dbName = DATABASE_NAME;
+<?php
 
-        $thisDatabaseReader = new Database($dbUserName, $whichPass, $dbName);
-        
-        $dbUserName = get_current_user() . '_writer';
-        $whichPass = "w";
-        $thisDatabaseWriter = new Database($dbUserName, $whichPass, $dbName);
-        
-        $dbUserName = get_current_user() . '_admin';
-        $whichPass = "a";
-        $thisDatabaseAdmin = new Database($dbUserName, $whichPass, $dbName);
-        ?>	
+print '<body id="' . $path_parts['filename'] . '">';
 
-    </head>
+include "header.php";
+include "nav.php";
 
-    <!-- **********************     Body section      ********************** -->
-    <?php
-    print '<body id="' . $path_parts['filename'] . '">';
-    include "header.php";
-    include "nav.php";
-    ?>
+?>
