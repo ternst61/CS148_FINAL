@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Join Us! Or DIE</title>
+<title>Ernst Family Tree</title>
 <meta charset="utf-8">
-<meta name="author" content="Sam Swanke">
-<meta name="description" content="We totaly wont steal and then sell your data!">
+<meta name="author" content="Sam Swanke, Tommy Ernst">
+<meta name="description" content="The family lineage of Tommy Ernst. Created for our CS148 Final Project.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
