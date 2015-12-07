@@ -28,6 +28,7 @@ function securityCheck($path_parts, $yourURL, $form = false) {
     $whiteListPages[] = "registerCode.php";
     $whiteListPages[] = "confirmationCode.php";
     $whiteListPages[] = "nav.php";
+    $whiteListPages[] = "history.php";
   
   
     
@@ -53,8 +54,8 @@ function securityCheck($path_parts, $yourURL, $form = false) {
     $whiteListFolders[] = "/cs148develop/cs148/advising";
     $whiteListFolders[] = "/cs148/advising";   
     
-    $whiteListFolders[] = "/cs148develop/cs148/final_project";
-    $whiteListFolders[] = "/cs148/final_project";   
+    $whiteListFolders[] = "/cs148develop/cs148/assignment10";
+    $whiteListFolders[] = "/cs148/assignment10";   
     
 
 
