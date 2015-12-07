@@ -1,4 +1,6 @@
 <!-- ######################     Main Navigation   ########################## -->
+<div class="nav-wrap">
+<div class="nav-anchor"></div>
 <nav>
     <ol>
         <?php
@@ -10,20 +12,32 @@
             print '<li><a href="index.php">Home</a></li>';
         }
         
-        if ($path_parts['filename'] == "tables") {
-            print '<li class="activePage">Display Tables</li>';
+        if ($path_parts['filename'] == "history") {
+            print '<li class="activePage">Family History</li>';
         } else {
-            print '<li><a href="tables.php">Display Tables</a></li>';
+            print '<li><a href="history.php">Family History</a></li>';
         }
         
-        if ($path_parts['filename'] == "populate-table.php") {
-            print '<li class="activePage">Populate Tables</li>';
+        if ($path_parts['filename'] == "familytree") {
+            print '<li class="activePage">Family Tree</li>';
         } else {
-            print '<li><a href="populate-table.php">Populate Tables</a></li>';
+            print '<li><a href="familytree.php">Family Tree</a></li>';
         }
         
+        if ($path_parts['filename'] == "form") {
+            print '<li class="activePage">Edit Person</li>';
+        } else {
+            print '<li><a href="form.php">Edit Person</a></li>';
+        }
+
+        if ($path_parts['filename'] == "familytree") {
+            print '<li class="activePage">Family Tree</li>';
+        } else {
+            print '<li><a href="familytree.php">Family Tree</a></li>';
+        }
         ?>
     </ol>
 </nav>
+</div>
 <!-- #################### Ends Main Navigation    ########################## -->
 
