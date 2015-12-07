@@ -12,5 +12,6 @@
 </footer>
 <!-- @@@@@@@@@@@@@@@@@@@@ Ends Footer             @@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <script type="text/javascript"	src="bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="nav.js"></script>
 </body>
 </html>
