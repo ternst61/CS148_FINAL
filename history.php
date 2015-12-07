@@ -2,10 +2,6 @@
 include ("top.php");
 ?>
 
-<body id ="history">
-<?php
-include ("nav.php");
-?>
 
   
     <p>
@@ -25,4 +21,3 @@ include ("nav.php");
 <?php
 include("footer.php");
 ?>
-</body>
