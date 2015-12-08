@@ -1,3 +1,5 @@
+</div>
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@     Footer            @@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <footer class="container">
 	<section class="col-sm-4">
