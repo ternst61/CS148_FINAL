@@ -20,15 +20,16 @@ function securityCheck($path_parts, $yourURL, $form = false) {
     $whiteListPages = array();
     $whiteListPages[] = "tables.php";
     $whiteListPages[] = "index.php";
+    $whiteListPages[] = "top.php";
     $whiteListPages[] = "populate-table.php";
     $whiteListPages[] = "populate-enrolled.php";
     $whiteListPages[] = "q01.php";
     $whiteListPages[] = "form.php";
-    $whiteListPages[] = "form2.php";
     $whiteListPages[] = "registerCode.php";
     $whiteListPages[] = "confirmationCode.php";
     $whiteListPages[] = "nav.php";
     $whiteListPages[] = "history.php";
+    $whiteListPages[] = "familyTree.php";
   
   
     
